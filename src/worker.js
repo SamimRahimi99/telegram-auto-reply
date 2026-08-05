@@ -119,3 +119,4 @@ async function sendMessage(env, chatId, text, replyTo = null) {
     })
   }
 );
+}
