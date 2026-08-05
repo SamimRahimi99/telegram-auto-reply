@@ -6,6 +6,37 @@ export default {
     }
 
     const update = await request.json();
+    if (update.callback_query) {
+  const query = update.callback_query;
+  const chatId = query.message.chat.id;
+  const data = query.data;
+
+  if (String(chatId) === "7244509871") {
+
+    if (data === "sethello") {
+      await sendMessage(
+        env,
+        chatId,
+        "📝 متن جدید را بفرست:\n\nمثال:\nسلام رفیق 👋"
+      );
+    }
+
+    if (data === "gethello") {
+      const current =
+        await env.DB.get("hello_reply")
+        || "علیک";
+
+      await sendMessage(
+        env,
+        chatId,
+        "📋 پاسخ فعلی:\n\n" + current
+      );
+    }
+
+  }
+
+  return new Response("OK");
+}
 
     if (!update.message || !update.message.text) {
       return new Response("OK");
