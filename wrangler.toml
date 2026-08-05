@@ -1,1 +1,7 @@
-#6
+name = "telegram-auto-reply"
+main = "src/worker.js"
+compatibility_date = "2026-08-05"
+
+[[kv_namespaces]]
+binding = "DB"
+id = "KV_NAMESPACE_ID"
