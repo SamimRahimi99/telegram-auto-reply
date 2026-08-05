@@ -60,20 +60,31 @@ export default {
 async function sendMessage(env, chatId, text, replyTo = null) {
 
   await fetch(
-    `https://api.telegram.org/bot${env.BOT_TOKEN}/sendMessage`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: text,
-        ...(replyTo ? {
-          reply_to_message_id: replyTo
-        } : {})
-      })
-    }
-  );
-
-}
+  `https://api.telegram.org/bot${env.BOT_TOKEN}/sendMessage`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: "⚙️ پنل مدیریت",
+      reply_markup: {
+        inline_keyboard: [
+          [
+            {
+              text: "📝 تغییر پاسخ سلام",
+              callback_data: "sethello"
+            }
+          ],
+          [
+            {
+              text: "📋 مشاهده پاسخ فعلی",
+              callback_data: "gethello"
+            }
+          ]
+        ]
+      }
+    })
+  }
+);
